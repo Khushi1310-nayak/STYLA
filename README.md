@@ -50,45 +50,31 @@ Instead of relying on a single AI response, STYLA distributes tasks across multi
 
 # 🏗 Multi-Agent Architecture
 
-```text
-                    User Request
-                         │
-                         ▼
-              STYLA Orchestrator Agent
-                         │
- ┌─────────────┬──────────────┬──────────────┬─────────────┐
- │             │              │              │             │
- ▼             ▼              ▼              ▼             ▼
-
-Outfit      Event         Trend        Weather      Wardrobe
-Agent       Stylist       Analysis     Styling      Curator
-
-                         │
-                         ▼
-
-            Color & Body Shape Agent
-
-                         │
-                         ▼
-
-          Accessories Recommendation Agent
-
-                         │
-                         ▼
-
-               Outfit Evaluation Agent
-
-                         │
-                         ▼
-
-            Final Personalized Recommendation
+```mermaid
+graph TD
+    User["User Request"]
+    Orchestrator["STYLA Orchestrator Agent"]
+    
+    User --> Orchestrator
+    
+    Orchestrator --> Outfit["Outfit Agent"]
+    Orchestrator --> Event["Event Stylist"]
+    Orchestrator --> Trend["Trend Analysis"]
+    Orchestrator --> Weather["Weather Styling"]
+    Orchestrator --> Wardrobe["Wardrobe Curator"]
+    
+    Outfit --> Color["Color & Body Shape Agent"]
+    Event --> Color
+    Trend --> Color
+    Weather --> Color
+    Wardrobe --> Color
+    
+    Color --> Accessories["Accessories Recommendation Agent"]
+    
+    Accessories --> Evaluation["Outfit Evaluation Agent"]
+    
+    Evaluation --> Final["Final Personalized Recommendation"]
 ```
-
----
-
-# ScreenShot
-
-<img width="624" height="1047" alt="image" src="https://github.com/user-attachments/assets/913e4f49-277d-4c13-874d-03848e0a131d" />
 
 ---
 
@@ -229,32 +215,43 @@ This project demonstrates several core Agentic AI concepts.
 
 # ⚙ Workflow
 
-```text
-User Request
-      │
-      ▼
-Orchestrator Agent
-      │
-      ▼
-Parallel Agent Execution
-
-├── Outfit Planning
-├── Trend Analysis
-├── Weather Analysis
-├── Wardrobe Review
-├── Event Styling
-├── Color Analysis
-└── Accessories Selection
-
-      │
-      ▼
-
-Evaluation & Ranking
-
-      │
-      ▼
-
-Final Curated Outfit
+```mermaid
+graph TD
+    User["User Request"]
+    Orchestrator["Orchestrator Agent"]
+    
+    subgraph Parallel ["Parallel Agent Execution"]
+        Outfit["Outfit Planning"]
+        Trend["Trend Analysis"]
+        Weather["Weather Analysis"]
+        Wardrobe["Wardrobe Review"]
+        Event["Event Styling"]
+        Color["Color Analysis"]
+        Accessories["Accessories Selection"]
+    end
+    
+    Eval["Evaluation & Ranking"]
+    Final["Final Curated Outfit"]
+    
+    User --> Orchestrator
+    
+    Orchestrator --> Outfit
+    Orchestrator --> Trend
+    Orchestrator --> Weather
+    Orchestrator --> Wardrobe
+    Orchestrator --> Event
+    Orchestrator --> Color
+    Orchestrator --> Accessories
+    
+    Outfit --> Eval
+    Trend --> Eval
+    Weather --> Eval
+    Wardrobe --> Eval
+    Event --> Eval
+    Color --> Eval
+    Accessories --> Eval
+    
+    Eval --> Final
 ```
 
 ---
@@ -362,19 +359,17 @@ This project demonstrates practical implementation of:
 
 ---
 
-# 👩‍💻 Author
+# 👩💻 Author
 
 ## **Manisa Nayak**
 
-B.Tech Computer Science Engineering
+🎓 Student | Full-Stack Developer | AI Product Builder
 
 Passionate about:
 
-- Agentic AI
-- Multi-Agent Systems
-- Full Stack Development
-- Artificial Intelligence
-- Generative AI
+- Full-Stack Architecture
+- User Experience (UI/UX)
+- AI Automation & Product Building
 
 ### Connect with Me
 
